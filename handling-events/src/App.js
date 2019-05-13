@@ -2,17 +2,18 @@ import React, { useState } from "react";
 import Person from "./Person";
 import "./App.css";
 
-//function App() {
 const App = props => {
   const [personstate, setPersonState] = useState({
     persons: [
       { name: "max", age: "25", msg: "hello" },
       { name: "sam", age: "35", msg: "bye" },
       { name: "tom", age: "22", msg: "hi" }
-    ],
-    other: "dfsfsdf"
+    ]
   });
-  console.log(personstate);
+
+  const [otherState, setOtherState] = useState("test state");
+
+  console.log(personstate, otherState);
 
   const switchNameHandler = () => {
     setPersonState({

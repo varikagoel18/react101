@@ -1,0 +1,48 @@
+import React, { useState } from "react";
+import Person from "./Person";
+import "./App.css";
+
+const App = props => {
+  const [personstate, setPersonState] = useState({
+    persons: [
+      { name: "max", age: "25", msg: "hello" },
+      { name: "sam", age: "35", msg: "bye" },
+      { name: "tom", age: "22", msg: "hi" }
+    ]
+  });
+
+  const [otherState, setOtherState] = useState("test state");
+
+  console.log(personstate, otherState);
+
+  const switchNameHandler = () => {
+    setPersonState({
+      persons: [
+        { name: "maxi", age: "27", msg: "bye" },
+        { name: "samy", age: "37", msg: "hi" },
+        { name: "tommmy", age: "25", msg: "hello" }
+      ]
+    });
+  };
+
+  return (
+    <div>
+      <button onClick={switchNameHandler}>Switch Name</button>
+      <Person
+        name={personstate.persons[0].name}
+        age={personstate.persons[0].age}
+        clickRef={switchNameHandler}
+      >
+        {personstate.persons[0].msg}
+      </Person>
+      <Person
+        name={personstate.persons[1].name}
+        age={personstate.persons[1].age}
+      >
+        {personstate.persons[1].msg}
+      </Person>
+    </div>
+  );
+};
+
+export default App;

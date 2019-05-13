@@ -1,19 +1,21 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import Person from "./Person";
 import "./App.css";
 
-class App extends Component {
-  state = {
+//function App() {
+const App = props => {
+  const [personstate, setPersonState] = useState({
     persons: [
       { name: "max", age: "25", msg: "hello" },
       { name: "sam", age: "35", msg: "bye" },
       { name: "tom", age: "22", msg: "hi" }
     ],
     other: "dfsfsdf"
-  };
+  });
+  console.log(personstate);
 
-  switchNameHandler = () => {
-    this.setState({
+  const switchNameHandler = () => {
+    setPersonState({
       persons: [
         { name: "maxi", age: "27", msg: "bye" },
         { name: "samy", age: "37", msg: "hi" },
@@ -22,25 +24,23 @@ class App extends Component {
     });
   };
 
-  render() {
-    return (
-      <div>
-        <button onClick={this.switchNameHandler}>Switch Name</button>
-        <Person
-          name={this.state.persons[0].name}
-          age={this.state.persons[0].age}
-        >
-          {this.state.persons[0].msg}
-        </Person>
+  return (
+    <div>
+      <button onClick={switchNameHandler}>Switch Name</button>
+      <Person
+        name={personstate.persons[0].name}
+        age={personstate.persons[0].age}
+      >
+        {personstate.persons[0].msg}
+      </Person>
+      <Person
+        name={personstate.persons[1].name}
+        age={personstate.persons[1].age}
+      >
+        {personstate.persons[1].msg}
+      </Person>
+    </div>
+  );
+};
 
-        <Person
-          name={this.state.persons[1].name}
-          age={this.state.persons[1].age}
-        >
-          {this.state.persons[1].msg}
-        </Person>
-      </div>
-    );
-  }
-}
 export default App;

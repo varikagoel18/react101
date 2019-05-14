@@ -1,8 +1,8 @@
 import React from "react";
-
+import "./UserOutput.css";
 const UserOutput = props => {
   return (
-    <div>
+    <div className="UserOutput">
       <p>{props.content}</p>
       <p>{props.children}</p>
     </div>

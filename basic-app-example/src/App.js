@@ -30,3 +30,8 @@ class App extends Component {
 }
 
 export default App;
+
+var divStyle = {
+  color: "red",
+  margin: "auto"
+};

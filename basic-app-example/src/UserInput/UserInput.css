@@ -1,0 +1,10 @@
+.inputStyle {
+  display: block;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  background: rgb(206, 230, 202);
+  width: 60%;
+  padding: 1px;
+  margin: 16px;
+  cursor: pointer;
+}

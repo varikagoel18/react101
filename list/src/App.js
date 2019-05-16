@@ -17,8 +17,9 @@ class App extends React.Component {
     this.setState({ showPersons: !show });
   };
 
-  nameChangeHandler = index => {
-    const newPersons = this.state.persons;
+  nameChangeHandler = (event, index) => {
+    const newPersons = [...this.state.persons];
+    newPersons[index].name = event.target.value;
     this.setState({ persons: newPersons });
   };
 
@@ -40,7 +41,7 @@ class App extends React.Component {
                 key={person.id}
                 name={person.name}
                 age={person.age}
-                changed={this.nameChangeHandler.bind(this, index)}
+                changed={event => this.nameChangeHandler(event, index)}
                 click={() => this.deletePersonHandler(index)}
               />
             );

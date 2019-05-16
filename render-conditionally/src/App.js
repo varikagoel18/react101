@@ -18,25 +18,31 @@ class App extends React.Component {
   };
 
   render() {
+    let persons = null;
+
+    if (this.state.showPersons) {
+      persons = (
+        <div>
+          <Person
+            name={this.state.persons[0].name}
+            age={this.state.persons[0].age}
+          >
+            {this.state.persons[0].msg}
+          </Person>
+          <Person
+            name={this.state.persons[1].name}
+            age={this.state.persons[1].age}
+          >
+            {this.state.persons[1].msg}
+          </Person>
+        </div>
+      );
+    }
+
     return (
       <div>
         <button onClick={this.togglePersonsHandler}>Toggle Persons</button>
-        {this.state.showPersons ? (
-          <div>
-            <Person
-              name={this.state.persons[0].name}
-              age={this.state.persons[0].age}
-            >
-              {this.state.persons[0].msg}
-            </Person>
-            <Person
-              name={this.state.persons[1].name}
-              age={this.state.persons[1].age}
-            >
-              {this.state.persons[1].msg}
-            </Person>
-          </div>
-        ) : null}
+        {persons}
       </div>
     );
   }

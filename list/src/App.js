@@ -5,9 +5,9 @@ import "./App.css";
 class App extends React.Component {
   state = {
     persons: [
-      { name: "max", age: "25", msg: "hello" },
-      { name: "sam", age: "35", msg: "bye" },
-      { name: "tom", age: "22", msg: "hi" }
+      { id: "1", name: "max", age: "25", msg: "hello" },
+      { id: "2", name: "sam", age: "35", msg: "bye" },
+      { id: "3", name: "tom", age: "22", msg: "hi" }
     ],
     showPersons: false
   };
@@ -17,17 +17,35 @@ class App extends React.Component {
     this.setState({ showPersons: !show });
   };
 
+  nameChangeHandler = index => {
+    const newPersons = this.state.persons;
+    this.setState({ persons: newPersons });
+  };
+
+  deletePersonHandler = index => {
+    var newPersons = [...this.state.persons];
+    newPersons.splice(index, 1);
+    this.setState({ persons: newPersons });
+  };
+
   render() {
     let persons = null;
 
     if (this.state.showPersons) {
       persons = (
         <div>
-          {this.state.persons.map(person => {
-            return <Person name={person.name} age={person.age} />;
+          {this.state.persons.map((person, index) => {
+            return (
+              <Person
+                key={person.id}
+                name={person.name}
+                age={person.age}
+                changed={this.nameChangeHandler.bind(this, index)}
+                click={() => this.deletePersonHandler(index)}
+              />
+            );
           })}
         </div>
-        
       );
     }
 

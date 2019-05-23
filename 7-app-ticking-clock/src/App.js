@@ -11,6 +11,7 @@ class App extends React.Component {
       time: new Date().toLocaleTimeString()
     });
   };
+  
   render() {
     {
       setInterval(this.updateTimeHandler, 1000);

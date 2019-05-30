@@ -25,6 +25,7 @@ const buildControls = props => {
           />
         );
       })}
+      <button className={classes.OrderButton}>ORDER NOW</button>
     </div>
   );
 };

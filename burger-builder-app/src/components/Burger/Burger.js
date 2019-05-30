@@ -13,7 +13,15 @@ const burger = props => {
       return <BurgerIngredient key={keys[i] + j} type={keys[i]} />;
     });
   });
-  // console.log(BIjsx);
+
+  BIjsx = BIjsx.reduce((arr, el) => {
+    return arr.concat(el);
+  }, []);
+
+  if (BIjsx.length === 0) {
+    BIjsx = <p> Please add ingredients</p>;
+  }
+  console.log(BIjsx);
 
   return (
     <div className={classes.Burger}>

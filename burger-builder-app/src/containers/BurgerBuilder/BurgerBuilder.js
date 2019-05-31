@@ -18,8 +18,20 @@ class BurgerBilder extends React.Component {
       meat: 0,
       bacon: 0
     },
-    price: 4.0
+    price: 4.0,
+    purchasable: false
   };
+
+  updatePurchasable(ingredients) {
+    const qty_arr = Object.keys(ingredients).map(ingKey => {
+      return ingredients[ingKey];
+    });
+
+    const qty_total = qty_arr.reduce((qty_total, el) => {
+      return qty_total + el;
+    }, 0);
+    this.setState({ purchasable: qty_total > 0 ? true : false });
+  }
 
   addIngredientsHandler = type => {
     const old_qty = this.state.ingredients[type];
@@ -30,6 +42,7 @@ class BurgerBilder extends React.Component {
     updatedIngredients[type] = new_qty;
     const new_price = this.state.price + this.prices[type];
     this.setState({ ingredients: updatedIngredients, price: new_price });
+    this.updatePurchasable(updatedIngredients);
   };
 
   removeIngredientsHandler = type => {
@@ -42,6 +55,7 @@ class BurgerBilder extends React.Component {
     updatedIngredients[type] = new_qty;
     const new_price = this.state.price - this.prices[type];
     this.setState({ ingredients: updatedIngredients, price: new_price });
+    this.updatePurchasable(updatedIngredients);
   };
 
   render() {
@@ -51,6 +65,7 @@ class BurgerBilder extends React.Component {
         <BuildControls
           addIngredient={this.addIngredientsHandler}
           removeIngredient={this.removeIngredientsHandler}
+          purchasable={this.state.purchasable}
           price={this.state.price}
         />
       </Aux>

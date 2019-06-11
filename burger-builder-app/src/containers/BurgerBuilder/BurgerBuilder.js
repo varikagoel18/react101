@@ -44,7 +44,10 @@ class BurgerBilder extends React.Component {
     };
     updatedIngredients[type] = new_qty;
     const new_price = this.state.price + this.prices[type];
-    this.setState({ ingredients: updatedIngredients, price: new_price });
+    this.setState({
+      ingredients: updatedIngredients,
+      price: new_price
+    });
     this.updatePurchasable(updatedIngredients);
   };
 
@@ -57,7 +60,10 @@ class BurgerBilder extends React.Component {
     };
     updatedIngredients[type] = new_qty;
     const new_price = this.state.price - this.prices[type];
-    this.setState({ ingredients: updatedIngredients, price: new_price });
+    this.setState({
+      ingredients: updatedIngredients,
+      price: new_price
+    });
     this.updatePurchasable(updatedIngredients);
   };
 
@@ -72,8 +78,10 @@ class BurgerBilder extends React.Component {
   purchaseContinueHandler = () => {
     alert("Continue button clicked");
   };
+
   purchaseCancelHandler = () => {
     alert("Cancel button clicked");
+    this.shopHandler();
   };
 
   render() {
@@ -82,6 +90,7 @@ class BurgerBilder extends React.Component {
         <Modal show={this.state.purchasing} backClicked={this.shopHandler}>
           <OrderSummary
             ingredients={this.state.ingredients}
+            price={this.state.price.toFixed(2)}
             clickedContinue={this.purchaseContinueHandler}
             clickedCancel={this.purchaseCancelHandler}
           />
@@ -91,7 +100,7 @@ class BurgerBilder extends React.Component {
           addIngredient={this.addIngredientsHandler}
           removeIngredient={this.removeIngredientsHandler}
           purchasable={this.state.purchasable}
-          price={this.state.price}
+          price={this.state.price.toFixed(2)}
           ordered={this.purchaseHandler}
         />
       </Aux>

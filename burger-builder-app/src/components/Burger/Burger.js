@@ -21,7 +21,7 @@ const burger = props => {
   if (BIjsx.length === 0) {
     BIjsx = <p> Please add ingredients</p>;
   }
-  console.log(BIjsx);
+  // console.log(BIjsx);
 
   return (
     <div className={classes.Burger}>
